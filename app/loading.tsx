@@ -1,9 +1,5 @@
-"use client";
-import { usePathname } from "next/navigation";
-import { BrandLoader } from "./components/BrandLoader";
-import { isPrimaryPage } from "./lib/primaryPages";
-
 export default function Loading() {
-  const pathname = usePathname();
-  return isPrimaryPage(pathname) ? <main className="page-loading"><BrandLoader /></main> : null;
+  // Primary-page loading is handled by SiteExperience so nested routes
+  // such as course details, student profiles and certificates stay clean.
+  return null;
 }
