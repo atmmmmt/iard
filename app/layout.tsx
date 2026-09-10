@@ -9,6 +9,7 @@ import "@fontsource/inter/700.css";
 import "./globals.css";
 import "./experience.css";
 import "./enhancements.css";
+import "./admin-modal-fix.css";
 import { LanguageProvider } from "./components/LanguageProvider";
 import { SiteExperience } from "./components/SiteExperience";
 
