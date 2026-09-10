@@ -5,7 +5,7 @@ import sharp from "sharp";
 import { config } from "./config.js";
 
 const invalid = message => Object.assign(new Error(message), { status: 400 });
-const allowed = new Set(["code", "slug", "title", "summary", "description", "category", "difficulty", "duration", "modules", "price", "currency", "instructor", "learningOutcomes", "curriculum", "details", "format", "imageUrl", "certificateSampleUrl", "brochureUrl", "featured", "status", "sortOrder", "seo"]);
+const allowed = new Set(["code", "slug", "title", "summary", "description", "category", "categoryId", "difficulty", "duration", "modules", "price", "currency", "instructor", "learningOutcomes", "curriculum", "details", "format", "imageUrl", "certificateSampleUrl", "brochureUrl", "featured", "status", "sortOrder", "seo"]);
 
 export function coursePayload(req) {
   let source = req.body;
