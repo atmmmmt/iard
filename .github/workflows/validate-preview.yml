@@ -3,6 +3,7 @@ name: Validate preview
 on:
   push:
     branches:
+      - main
       - chatgpt/course-admin-improvements
   pull_request:
     branches:
