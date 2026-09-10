@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": ["node_modules", "server", "db", "drizzle", "worker", "build", "examples", "tests", "scripts", "out", "dist", "app/chatgpt-auth.ts"]
+}
