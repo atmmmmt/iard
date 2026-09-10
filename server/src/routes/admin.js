@@ -140,10 +140,13 @@ router.patch("/courses/:id", allowRoles("super_admin", "admin", "editor"), uploa
 }));
 
 router.delete("/courses/:id", allowRoles("super_admin", "admin"), asyncRoute(async (req, res) => {
-  const item = await Course.findByIdAndUpdate(req.params.id, { status: "archived" }, { new: true });
+  const item = await Course.findByIdAndDelete(req.params.id);
   if (!item) return res.status(404).json({ message: "Course not found" });
-  await recordAudit(req, "course.archive", "Course", item.id);
-  res.json(item);
+  // Keep issued certificates valid, but remove the dangling relation to the deleted course.
+  // courseTitle is already copied into every certificate when it is issued.
+  await Certificate.updateMany({ course: item._id }, { $unset: { course: 1 } });
+  await recordAudit(req, "course.delete", "Course", item.id, { code: item.code, permanent: true });
+  res.json({ deleted: true, id: item.id });
 }));
 
 router.get("/students", list(Student));
