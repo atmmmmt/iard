@@ -1,0 +1,31 @@
+/* Fix long admin forms being clipped inside the modal. */
+.admin-modal {
+  max-height: calc(100dvh - 28px);
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.admin-modal .modal-head {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.admin-modal .modal-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+}
+
+.admin-modal-wide {
+  max-height: calc(100dvh - 28px);
+}
+
+@media (max-width: 760px) {
+  .admin-modal,
+  .admin-modal-wide {
+    max-height: calc(100dvh - 16px);
+  }
+}
