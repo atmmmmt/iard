@@ -53,7 +53,7 @@ jobs:
       - name: Seed preview database
         run: |
           npm --prefix server run seed
-          node scripts/seed-preview.mjs
+          node server/src/seed-preview.js
       - name: Start API
         run: |
           npm --prefix server start > /tmp/iard-api.log 2>&1 &
