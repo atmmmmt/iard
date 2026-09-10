@@ -19,15 +19,18 @@ try {
   await shot("01-admin-overview");
 
   await page.getByRole("button", { name: /التصنيفات|Categories/ }).click();
-  await page.waitForTimeout(400);
+  await page.waitForTimeout(500);
   await shot("02-admin-categories");
 
   await page.getByRole("button", { name: /الكورسات|Courses/ }).click();
-  await page.waitForTimeout(500);
-  await shot("03-admin-courses");
+  await page.waitForTimeout(700);
+  await shot("03-admin-courses-pagination");
   await page.getByRole("button", { name: /إنشاء دورة|Create Course/ }).click();
   await page.waitForTimeout(250);
   await shot("04-create-course-modal");
+  await page.locator(".modal").evaluate(el => { el.scrollTop = el.scrollHeight; });
+  await page.waitForTimeout(150);
+  await shot("04b-create-course-curriculum");
   await page.locator(".modal-head button").click();
 
   await page.getByRole("button", { name: /الشهادات|Certificates/ }).click();
@@ -37,8 +40,15 @@ try {
   await shot("05-certificate-modal");
 
   await page.goto("http://127.0.0.1:3000/courses", { waitUntil: "networkidle" });
+  await page.waitForTimeout(700);
+  await shot("06-public-courses-pagination");
+
+  await page.goto("http://127.0.0.1:3000/courses/preview-course-01", { waitUntil: "networkidle" });
   await page.waitForTimeout(500);
-  await shot("06-public-courses");
+  await shot("07-course-overview");
+  await page.getByRole("button", { name: /المحاور|Curriculum/ }).click();
+  await page.waitForTimeout(200);
+  await shot("08-course-curriculum");
 } finally {
   await browser.close();
 }
